@@ -1,12 +1,20 @@
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        InputStream is = Main.class.getResourceAsStream("wordlist.txt");
 
-        String line = scanner.nextLine().toLowerCase();
+        Scanner scanner = new Scanner(is);
+
+        StringBuilder lines = new StringBuilder();
+        while (scanner.hasNext()) {
+            lines.append(scanner.nextLine().toLowerCase());
+        }
 
         Map<Character, Integer> chars = new HashMap<>();
 
@@ -19,7 +27,7 @@ public class Main {
             }
         }*/
 
-        for(char c : line.toCharArray()) {
+        for(char c : lines.toString().toCharArray()) {
             int count = 1;
             if(chars.containsKey(c)) {
                 count += chars.get(c);
